@@ -15,7 +15,7 @@ class Urlshortener extends Module
     {
         $this->name = 'urlshortener';
         $this->tab = 'front_office_features';
-        $this->version = '1.0.0';
+        $this->version = '1.0.1';
         $this->author = 'astrodesign.pl';
         $this->need_instance = 0;
 
@@ -75,7 +75,7 @@ class Urlshortener extends Module
         return [
             'module-urlshortener-redirect' => [
                 'controller' => 'redirect',
-                'rule'       => '{code}',
+                'rule' => 'go/{code}',
                 'keywords'   => [
                     'code' => [
                         'regexp' => '[_a-zA-Z0-9\-]+',
@@ -238,7 +238,7 @@ class Urlshortener extends Module
         </thead><tbody>';
 
         foreach ($links as $link) {
-            $shortUrl = $baseUrl . $link['code'];
+            $shortUrl = $baseUrl . 'go/' . $link['code'];
 
             $deleteUrl = AdminController::$currentIndex .
                 '&configure=' . $this->name .
